@@ -22,6 +22,11 @@ public class HistoriqueTester
     {
         Assert.AreEqual(4, HistoriqueFactory.TwoPlusTwo().GetResult());
     }
+    [TestMethod]
+    public void GetResult_WithPriorityzed_ThenFour()
+    {
+        Assert.AreEqual(20, HistoriqueFactory.Priorityzed().GetResult());
+    }
 
     [TestMethod]
     public void Revert_WithTwoPlusTwo_ThenTwoPlus()
@@ -35,6 +40,7 @@ public class HistoriqueTester
     public void Revert_WithPriorityezd_ThenTwoPlusTwo()
     {
         var hist = HistoriqueFactory.Priorityzed();
+        hist.Revert();
         hist.Revert();
         Assert.IsTrue(hist.Content.SequenceEqual(new List<string>(){"2","+", "2"}));
     }

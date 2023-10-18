@@ -30,4 +30,12 @@ public class HistoriqueTester
         hist.Revert();
         Assert.IsTrue(hist.Content.SequenceEqual(new List<string>(){"2","+"}));
     }
+    
+    [TestMethod]
+    public void Revert_WithPriorityezd_ThenTwoPlusTwo()
+    {
+        var hist = HistoriqueFactory.Priorityzed();
+        hist.Revert();
+        Assert.IsTrue(hist.Content.SequenceEqual(new List<string>(){"2","+", "2"}));
+    }
 }

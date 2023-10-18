@@ -2,15 +2,22 @@ namespace ConsoleApp3.Tests;
 
 public class HistoriqueFactory
 {
-    public static Historique TwoPlusTwo()
+    private static Historique Init(params string[] content)
     {
+        
         var historique = new Historique();
-        historique.Content = new List<string>()
-        {
-            "2", "+", "2"
-        };
+        historique.Content = content.ToList();
 
         return historique;
+    }
+    public static Historique TwoPlusTwo()
+    {
+        return Init("2", "+","2");
+    }
+
+    public static Historique Priorityzed()
+    {
+        return Init(            "(", "2", "+", "2",")","*","5");
     }
 
     public static Historique TwoPlusTwoPlusTwo()

@@ -1,6 +1,8 @@
+namespace ConsoleApp3;
+
 public class InputManager
 {
-    public List<string> Historique { get; set; } = new List<string>();
+    public Historique Historique { get; set; } = new Historique();
     
     public int GetNumberInputLoop(string label)
     {
@@ -12,6 +14,7 @@ public class InputManager
         } while (a == null);
 
         Historique.Add(a.ToString());
+
         return a.Value;
     }
 
@@ -46,8 +49,4 @@ public class InputManager
         return input;
     }
 
-    public string PrintHistorique()
-    {
-        return String.Join(" ", Historique);
-    }
 }

@@ -23,4 +23,14 @@ public class Historique
     {
         return String.Join(" ", Content);
     }
+
+    public int GetResult()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Revert()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -1,12 +1,14 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 string op;
-var a = InputManager.GetNumberInputLoop("A");
+var inputManager = new InputManager();
+var a = inputManager.GetNumberInputLoop("A");
 do
 {
-    op = InputManager.GetOperator();
-    var b = InputManager.GetNumberInputLoop("B");
+    op = inputManager.GetOperator();
+    var b = inputManager.GetNumberInputLoop("B");
     a = OperationManager.Compute(op, a, b);
+    Console.WriteLine(inputManager.PrintHistorique());
     Console.WriteLine("Le résultat est " + a);
 
 } while (op != "bye");

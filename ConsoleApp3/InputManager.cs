@@ -1,6 +1,8 @@
 public class InputManager
 {
-    public static int GetNumberInputLoop(string label)
+    public List<string> Historique { get; set; } = new List<string>();
+    
+    public int GetNumberInputLoop(string label)
     {
         int? a = null;
         do
@@ -9,6 +11,7 @@ public class InputManager
             a = GetNumberInput();
         } while (a == null);
 
+        Historique.Add(a.ToString());
         return a.Value;
     }
 
@@ -24,7 +27,7 @@ public class InputManager
         return result;
     }
 
-    public static string GetOperator()
+    public string GetOperator()
     {
         string input;
         List<string> operators = new List<string>()
@@ -39,6 +42,12 @@ public class InputManager
                 Console.WriteLine($"Opérateur invalide ({String.Join(",", operators)})");
             }
         } while (!operators.Contains(input));
+        Historique.Add(input);
         return input;
+    }
+
+    public string PrintHistorique()
+    {
+        return String.Join(" ", Historique);
     }
 }

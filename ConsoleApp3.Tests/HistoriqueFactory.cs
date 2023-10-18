@@ -4,10 +4,8 @@ public class HistoriqueFactory
 {
     private static Historique Init(params string[] content)
     {
-        
         var historique = new Historique();
         historique.Content = content.ToList();
-
         return historique;
     }
     public static Historique TwoPlusTwo()
@@ -21,9 +19,7 @@ public class HistoriqueFactory
     }
 
     public static Historique TwoPlusTwoPlusTwo()
-    {
-        var res = TwoPlusTwo();
-        TwoPlusTwo().Content.Add("+");
-        return res;
+    { return Init("2", "+","2","+");
+
     }
 }

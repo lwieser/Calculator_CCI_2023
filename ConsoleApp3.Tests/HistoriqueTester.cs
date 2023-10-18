@@ -6,7 +6,7 @@ public class HistoriqueTester
     [TestMethod]
     public void GetLastOperator_WithTwoPlusTwo_ThenPlus()
     {
-        var res = HistoriqueFactory.TwoPlusTwo();
+        var res = HistoriqueFactory.TwoPlusTwo().GetLastOperator;
         Assert.AreEqual("+", res);
     }
     

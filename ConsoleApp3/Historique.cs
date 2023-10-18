@@ -3,7 +3,8 @@ namespace ConsoleApp3;
 public class Historique
 {
     public List<string> Content { get; set; } = new List<string>();
-    public string GetLastOperator =>  Content.ElementAt(Content.Count - 2);
+    public string GetLastOperator =>  Content
+        .Last(x => Operators.All.Contains(x));
     public bool IsLastElementValue => Content.Count % 2 != 0 && Content.Count > 2;
     public void Add(string input)
     {

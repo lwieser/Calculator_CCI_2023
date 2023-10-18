@@ -33,10 +33,7 @@ public class InputManager
     public string GetOperator()
     {
         string input;
-        List<string> operators = new List<string>()
-        {
-            "+", "-", "*", "/"
-        };
+        var operators = Operators.All;
         do
         {
             input = Console.ReadLine();

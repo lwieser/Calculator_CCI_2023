@@ -29,9 +29,8 @@ public class InputManager
         string input;
         List<string> operators = new List<string>()
         {
-            "+", "-"
+            "+", "-", "*", "/"
         };
-        
         do
         {
             input = Console.ReadLine();

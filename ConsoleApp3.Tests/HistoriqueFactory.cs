@@ -12,6 +12,10 @@ public class HistoriqueFactory
     {
         return Init("2", "+","2");
     }
+    public static Historique Twenty25()
+    {
+        return Init("2", "+","3","*","5");
+    }
 
     public static Historique Priorityzed()
     {
@@ -19,7 +23,12 @@ public class HistoriqueFactory
     }
 
     public static Historique TwoPlusTwoPlusTwo()
-    { return Init("2", "+","2","+");
+    { 
+        return Init("2", "+","2","+");
+    }
 
+    public static Historique Two()
+    {
+        return Init("2");
     }
 }

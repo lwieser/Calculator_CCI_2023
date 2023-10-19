@@ -31,8 +31,7 @@ public class HistoriqueTester
     [TestMethod]
     public void GetResult_With25Result_Then25()
     {
-        var hist = HistoriqueFactory.TwoPlusTwo();
-        hist.Revert();
+        var hist = HistoriqueFactory.Twenty25();
         Assert.AreEqual(25, hist.GetResult());
     }
     [TestMethod]

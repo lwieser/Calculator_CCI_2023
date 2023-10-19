@@ -27,7 +27,15 @@ public class Historique
 
     public int GetResult()
     {
-        throw new NotImplementedException();
+        int result = 0;
+        foreach (var element in Content)
+        {
+            // valeur  
+            result = int.Parse(element);
+            
+            // operateur 
+        }
+        return result;
     }
 
     public void Revert()

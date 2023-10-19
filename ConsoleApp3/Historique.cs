@@ -29,7 +29,7 @@ public class Historique
     {
         int? result = null;
         string op = "";
-        foreach (var element in Content)
+        foreach (var element in Content.Where(x => x != "(" && x != ")"))
         {
             if (Operators.All.Contains(element))
             {
@@ -53,5 +53,10 @@ public class Historique
     public void Revert()
     {
         Content.RemoveAt(Content.Count - 1);
+        if (Content.Last() == ")")
+        {
+            Content.RemoveAt(0);
+            Content.RemoveAt(Content.Count - 1);
+        }
     }
 }

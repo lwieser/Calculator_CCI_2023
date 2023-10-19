@@ -59,4 +59,14 @@ public class InputManagerTester
         });
         Assert.AreEqual(48, inputManager.Historique.GetResult());
     }
+
+    [TestMethod]
+    public void SplitInput_WithTestCase3ThenCheck()
+    {
+        var splitted = inputManager.SplitInput("2+3b4*6bb*8");
+        Assert.AreEqual(3, splitted.Count(Operators.IsOperator));
+        Assert.AreEqual(5, splitted.Count(Operators.IsNumber));
+        Assert.AreEqual(3, splitted.Count(Operators.IsBack));
+        
+    }
 }

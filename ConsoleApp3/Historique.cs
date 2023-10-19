@@ -4,8 +4,9 @@ public class Historique
 {
     public List<string> Content { get; set; } = new List<string>();
     public string GetLastOperator =>  Content
-        .Last(x => Operators.All.Contains(x));
-    public bool IsLastElementValue => Content.Count % 2 != 0 && Content.Count > 2;
+        .LastOrDefault(x => Operators.AllOperator.Contains(x));
+
+    public bool IsLastElementValue => int.TryParse(Content.LastOrDefault(), out _);
     public void Add(string input)
     {
         Content.Add(input);
@@ -31,7 +32,7 @@ public class Historique
         string op = "";
         foreach (var element in Content.Where(x => x != "(" && x != ")"))
         {
-            if (Operators.All.Contains(element))
+            if (Operators.AllOperator.Contains(element))
             {
                 op = element;
             }

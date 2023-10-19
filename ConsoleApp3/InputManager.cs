@@ -34,7 +34,7 @@ public class InputManager
     {
         Console.WriteLine("Veuillez saisir l'opérateur");
         string input;
-        var operators = Operators.All;
+        var operators = Operators.AllOperator;
         do
         {
             input = Console.ReadLine();
@@ -47,25 +47,71 @@ public class InputManager
         return input;
     }
 
-    public void AddInput(string input = null)
+    public List<string> SplitInput(string input)
     {
-        if (input == null)
+        var res = new List<string>()
         {
-            input = Console.ReadLine();
-        }
-        if (input == "b")
+            input
+        };
+        foreach (var actions in Operators.All())
         {
-            Historique.Revert();
+            var splitted = res.Select(x => x.Split(actions)).ToList();
+            res = new List<string>();
+            foreach (var split in splitted)
+            {
+                if (split.Length == 1)
+                {
+                    res.Add(split.First());
+                }
+                else
+                {
+                    for (var i = 0; i < split.Length; i++)
+                    {
+                        if (i == 0)
+                        {
+                            res.Add(split[i]);
+                        }
+                        else
+                        {
+                            res.Add(actions);
+                            res.Add(split[i]);
+                        }
+                    }
+                }
+            }
+
         }
 
-        var isNumber = int.TryParse(input, out var intValue);
-        if (Historique.IsLastElementValue && !isNumber)
+        return res.Where(x => !String.IsNullOrEmpty(x)).ToList();
+    }
+    
+    public void AddInput(string inputToSplit = null)
+    {
+        if (inputToSplit == null)
         {
-            Historique.Add(input);
+            inputToSplit = Console.ReadLine();
         }
-        if (!Historique.IsLastElementValue && isNumber)
+
+        foreach (var input in SplitInput(inputToSplit))
         {
-            Historique.Add(input);
+            if (input == "b")
+            {
+                Historique.Revert();
+            }
+            else
+            {
+                var isNumber = int.TryParse(input, out var intValue);
+                if (Historique.IsLastElementValue && !isNumber)
+                {
+                    Historique.Add(input);
+                }
+                if (!Historique.IsLastElementValue && isNumber)
+                {
+                    Historique.Add(input);
+                }
+            }
         }
+
+        ;
     }
 }

@@ -64,4 +64,12 @@ public class HistoriqueTester
         hist.Revert();
         Assert.IsTrue(hist.Content.SequenceEqual(new List<string>(){"2","+", "2"}));
     }
+
+    [TestMethod]
+    public void Revert_WithEmpty_ThenEmpty()
+    {
+        var historique = HistoriqueFactory.Empty();
+            historique.Revert();
+        Assert.IsFalse(historique.Content.Any());
+    }
 }

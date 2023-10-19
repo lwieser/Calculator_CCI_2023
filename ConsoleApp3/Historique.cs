@@ -52,6 +52,7 @@ public class Historique
 
     public void Revert()
     {
+        if (Content.Count == 0) return;
         Content.RemoveAt(Content.Count - 1);
         if (Content.Last() == ")")
         {

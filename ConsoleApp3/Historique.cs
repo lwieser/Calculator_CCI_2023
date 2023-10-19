@@ -27,19 +27,31 @@ public class Historique
 
     public int GetResult()
     {
-        int result = 0;
+        int? result = null;
+        string op = "";
         foreach (var element in Content)
         {
-            // valeur  
-            result = int.Parse(element);
-            
-            // operateur 
+            if (Operators.All.Contains(element))
+            {
+                op = element;
+            }
+            else
+            {
+                if (result == null)
+                {
+                    result = int.Parse(element);
+                }
+                else
+                {
+                    result = OperationManager.Compute(op, result.Value, int.Parse(element));
+                }
+            }
         }
-        return result;
+        return !result.HasValue ? 0 : result.Value;
     }
 
     public void Revert()
     {
-        throw new NotImplementedException();
+        Content.RemoveAt(Content.Count - 1);
     }
 }

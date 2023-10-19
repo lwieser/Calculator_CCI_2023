@@ -46,4 +46,17 @@ public class InputManagerTester
         });
         Assert.AreEqual(48, inputManager.Historique.GetResult());
     }
+
+    [TestMethod]
+    public void AddInputTestCase3()
+    {
+        new List<string>()
+        {
+            "2+3b4*6bb*8"
+        }.ForEach(x =>
+        {
+            inputManager.AddInput(x);
+        });
+        Assert.AreEqual(48, inputManager.Historique.GetResult());
+    }
 }

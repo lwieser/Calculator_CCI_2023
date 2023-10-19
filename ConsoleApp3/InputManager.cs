@@ -32,6 +32,7 @@ public class InputManager
 
     public string GetOperator()
     {
+        Console.WriteLine("Veuillez saisir l'opérateur");
         string input;
         var operators = Operators.All;
         do
@@ -46,4 +47,25 @@ public class InputManager
         return input;
     }
 
+    public void AddInput(string input = null)
+    {
+        if (input == null)
+        {
+            input = Console.ReadLine();
+        }
+        if (input == "b")
+        {
+            Historique.Revert();
+        }
+
+        var isNumber = int.TryParse(input, out var intValue);
+        if (Historique.IsLastElementValue && !isNumber)
+        {
+            Historique.Add(input);
+        }
+        if (!Historique.IsLastElementValue && isNumber)
+        {
+            Historique.Add(input);
+        }
+    }
 }

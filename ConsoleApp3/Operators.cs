@@ -4,6 +4,6 @@ public class Operators
 {
     public static List<string> All = new List<string>()
     {
-        "+", "-", "*", "/"
+        "+", "-", "*", "/", "b"
     };
 }

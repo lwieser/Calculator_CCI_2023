@@ -31,4 +31,10 @@ public class HistoriqueFactory
     {
         return Init("2");
     }
+
+    public static Historique Empty()
+    {
+        return Init();
+
+    }
 }

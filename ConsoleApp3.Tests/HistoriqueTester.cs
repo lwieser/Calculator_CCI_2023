@@ -43,6 +43,12 @@ public class HistoriqueTester
     }
 
     [TestMethod]
+    public void GetResult_WithEmpty_Then0()
+    {
+        Assert.AreEqual(0, HistoriqueFactory.Empty().GetResult());
+    }
+
+    [TestMethod]
     public void Revert_WithTwoPlusTwo_ThenTwoPlus()
     {
         var hist = HistoriqueFactory.TwoPlusTwo();

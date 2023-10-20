@@ -1,6 +1,8 @@
+using ConsoleApp3.Interfaces;
+
 namespace ConsoleApp3;
 
-public class InputManager
+public class InputManager : IInputManagerInterface
 {
     public Historique Historique { get; set; } = new Historique();
     
@@ -111,7 +113,5 @@ public class InputManager
                 }
             }
         }
-
-        ;
     }
 }

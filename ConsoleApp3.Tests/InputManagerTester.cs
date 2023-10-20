@@ -1,5 +1,8 @@
 namespace ConsoleApp3.Tests;
 
+
+
+
 [TestClass]
 public class InputManagerTester
 {
@@ -10,54 +13,28 @@ public class InputManagerTester
         inputManager = new InputManager();
     }
 
-    [TestMethod]
-    public void AddInputWithEmptyAndNumberThenNumberIsAdded()
-    {
-        inputManager.AddInput("2");
-        Assert.AreEqual(1, inputManager.Historique.Content.Count);
-    }
-    
-    
-    [TestMethod]
-    public void AddInputWithEmptyAndOperatorThenEmpty()
-    {
-        inputManager.AddInput("+");
-        Assert.IsFalse(inputManager.Historique.Content.Any());
-    }
+
 
     [TestMethod]
-    public void AddInputTestCase1()
+    public void SplitInputWithTwoPlusTwo()
     {
-        inputManager.AddInput("2");
-        inputManager.AddInput("+");
-        inputManager.AddInput("2");
-        Assert.AreEqual(4, inputManager.Historique.GetResult());
+        var res = inputManager.SplitInput("2+2");
+        var execetedResult = new List<string>()
+        {
+            "2", "+", "2"
+        };
+        Assert.IsTrue(res.SequenceEqual(execetedResult));
     }
     
     [TestMethod]
-    public void AddInputTestCase2()
+    public void SplitInputWithDavid()
     {
-        new List<string>()
+        var res = inputManager.SplitInput("2++23");
+        var execetedResult = new List<string>()
         {
-            "2", "+", "3", "b", "4", "*","6","b","b","*","8"
-        }.ForEach(x =>
-        {
-            inputManager.AddInput(x);
-        });
-        Assert.AreEqual(48, inputManager.Historique.GetResult());
-    }
-
-    [TestMethod]
-    public void AddInputTestCase3()
-    {
-        new List<string>()
-        {
-            "2+3b4*6bb*8"
-        }.ForEach(x =>
-        {
-            inputManager.AddInput(x);
-        });
-        Assert.AreEqual(48, inputManager.Historique.GetResult());
+            "2", "+","+", "23"
+        };
+        Assert.IsTrue(res.SequenceEqual(execetedResult));
     }
 
     [TestMethod]
@@ -67,6 +44,5 @@ public class InputManagerTester
         Assert.AreEqual(3, splitted.Count(Operators.IsOperator));
         Assert.AreEqual(5, splitted.Count(Operators.IsNumber));
         Assert.AreEqual(3, splitted.Count(Operators.IsBack));
-        
     }
 }

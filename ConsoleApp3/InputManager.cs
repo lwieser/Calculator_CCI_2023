@@ -12,7 +12,7 @@ public class InputManager : IInputManagerInterface
         _reader = reader;
     }
     
-    public List<string> SplitInput(string input)
+    public static List<string> SplitInput(string input)
     {
         if (input == null) return new List<string>();
         

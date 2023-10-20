@@ -16,14 +16,14 @@ public class InputManagerGenericTester
         {
             inputManager.AddInput(x);
         });
-        Assert.AreEqual(48, inputManager.Historique.GetResult());
+        Assert.AreEqual(48, inputManager.History.GetResult());
     }
 
     [TestMethod]
     public void GetResultDavid()
     {
         inputManager.AddInput("2++23");
-        var res = inputManager.Historique.GetResult();
+        var res = inputManager.History.GetResult();
         Assert.AreEqual(25, res);
     }
     
@@ -32,7 +32,7 @@ public class InputManagerGenericTester
     public void AddInputWithEmptyAndNumberThenNumberIsAdded()
     {
         inputManager.AddInput("2");
-        Assert.AreEqual(1, inputManager.Historique.Content.Count);
+        Assert.AreEqual(1, inputManager.History.Content.Count);
     }
     
     
@@ -40,14 +40,14 @@ public class InputManagerGenericTester
     public void AddInputWithEmptyAndOperatorThenEmpty()
     {
         inputManager.AddInput("+");
-        Assert.IsFalse(inputManager.Historique.Content.Any());
+        Assert.IsFalse(inputManager.History.Content.Any());
     }
     
     [TestMethod]
     public void AddInputWithMinusOperator()
     {
         inputManager.AddInput("2-3");
-        Assert.AreEqual(-1, inputManager.Historique.GetResult());
+        Assert.AreEqual(-1, inputManager.History.GetResult());
     }
 
     [TestMethod]
@@ -56,7 +56,7 @@ public class InputManagerGenericTester
         inputManager.AddInput("2");
         inputManager.AddInput("+");
         inputManager.AddInput("2");
-        Assert.AreEqual(4, inputManager.Historique.GetResult());
+        Assert.AreEqual(4, inputManager.History.GetResult());
     }
     
     [TestMethod]
@@ -69,6 +69,6 @@ public class InputManagerGenericTester
         {
             inputManager.AddInput(x);
         });
-        Assert.AreEqual(48, inputManager.Historique.GetResult());
+        Assert.AreEqual(48, inputManager.History.GetResult());
     }
 }

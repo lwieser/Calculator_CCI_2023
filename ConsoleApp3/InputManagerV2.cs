@@ -4,7 +4,7 @@ namespace ConsoleApp3;
 
 public class InputManagerV2 : IInputManagerInterface
 {
-    public Historique Historique { get; set; } = new Historique();
+    public History History { get; set; } = new History();
 
     public int GetNumberInputLoop(string label)
     {
@@ -15,7 +15,7 @@ public class InputManagerV2 : IInputManagerInterface
             a = GetNumberInput();
         } while (a == null);
 
-        Historique.Add(a.ToString());
+        History.Add(a.ToString());
 
         return a.Value;
     }
@@ -49,7 +49,7 @@ public class InputManagerV2 : IInputManagerInterface
             }
         } while (!operators.Contains(input));
 
-        Historique.Add(input);
+        History.Add(input);
         return input;
     }
 
@@ -62,10 +62,10 @@ public class InputManagerV2 : IInputManagerInterface
 
         if (input == "b")
         {
-            Historique.Revert();
+            History.Revert();
         }
 
-        if (Operators.All().Contains(input) && input != "b" && Historique.Content.Any())
+        if (Operators.All().Contains(input) && input != "b" && History.Content.Any())
         {
             GetOperator(input);
         }
@@ -78,7 +78,7 @@ public class InputManagerV2 : IInputManagerInterface
                 var elements = input.ToCharArray();
                 for (int i = 0; i < elements.Length; i++)
                 {
-                    if (elements[i] == 'b') Historique.Revert();
+                    if (elements[i] == 'b') History.Revert();
                     else
                     {
                         // string value = "";
@@ -92,7 +92,7 @@ public class InputManagerV2 : IInputManagerInterface
                         // {
                         //     Historique.Add(value);
                         // } else Historique.Add(elements[i].ToString());
-                        Historique.Add(elements[i].ToString());
+                        History.Add(elements[i].ToString());
                         // if (i < elements.Length - 2 && int.TryParse(elements[i].ToString(), out intValue))
                         // {
                         //     var nextElementIsNumber = int.TryParse(elements[i + 1].ToString(), out intValue);
@@ -107,15 +107,15 @@ public class InputManagerV2 : IInputManagerInterface
                     }
                 }
             }
-            else if (Historique.IsLastElementValue & input.Length < 2)
+            else if (History.IsLastElementValue & input.Length < 2)
             {
-                Historique.Add(input);
+                History.Add(input);
             }
         }
 
-        if (!Historique.IsLastElementValue && isNumber)
+        if (!History.IsLastElementValue && isNumber)
         {
-            Historique.Add(input);
+            History.Add(input);
         }
     }
 }

@@ -1,6 +1,6 @@
 namespace ConsoleApp3;
 
-public class Historique
+public class History : IHistorique
 {
     public List<string> Content { get; set; } = new List<string>();
     public string GetLastOperator =>  Content
@@ -30,7 +30,7 @@ public class Historique
     {
         int? result = null;
         string op = "";
-        foreach (var element in Content.Where(x => x != "(" && x != ")"))
+        foreach (var element in Content.Where(x => !Operators.Parenthesis.Contains(x)))
         {
             if (Operators.AllOperator.Contains(element))
             {

@@ -7,7 +7,7 @@ var inputManager = new InputManager();
 do
 {
     inputManager.AddInput();
-    Console.WriteLine(inputManager.Historique.ToString());
-    Console.WriteLine("Le résultat est " + inputManager.Historique.GetResult());
+    Console.WriteLine(inputManager.History.ToString());
+    Console.WriteLine("Le résultat est " + inputManager.History.GetResult());
 
 } while (true);

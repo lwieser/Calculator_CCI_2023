@@ -9,6 +9,11 @@ public class Operators
     {
         "b"
     };
+
+    public static List<string> Parenthesis = new List<string>()
+    {
+        "(", ")"
+    };
     
     public static List<string> AllOperator = new List<string>()
     {

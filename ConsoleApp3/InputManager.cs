@@ -4,7 +4,7 @@ namespace ConsoleApp3;
 
 public class InputManager : IInputManagerInterface
 {
-    public Historique Historique { get; set; } = new Historique();
+    public History History { get; set; } = new History();
     
 
 
@@ -55,20 +55,20 @@ public class InputManager : IInputManagerInterface
 
         foreach (var input in SplitInput(inputToSplit))
         {
-            if (input == "b")
+            if (Operators.IsBack(input))
             {
-                Historique.Revert();
+                History.Revert();
             }
             else
             {
                 var isNumber = int.TryParse(input, out var intValue);
-                if (Historique.IsLastElementValue && !isNumber)
+                if (History.IsLastElementValue && !isNumber)
                 {
-                    Historique.Add(input);
+                    History.Add(input);
                 }
-                if (!Historique.IsLastElementValue && isNumber)
+                if (!History.IsLastElementValue && isNumber)
                 {
-                    Historique.Add(input);
+                    History.Add(input);
                 }
             }
         }

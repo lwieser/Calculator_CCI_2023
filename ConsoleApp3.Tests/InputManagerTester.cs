@@ -32,6 +32,27 @@ public class InputManagerTester
         var res = inputManager.SplitInput(null);
         Assert.AreEqual(0, res.Count);
     }
+
+    [TestMethod]
+    public void CleanMinusWithNegative()
+    {
+        var res = InputManager.CleanMinus(new List<string>()
+        {
+            "2","+","-","2"
+        });
+        Assert.IsTrue(res.SequenceEqual(new List<string>(){"2","+","-2"}));
+        
+    }
+    
+    [TestMethod]
+    public void CleanMinusWithStartNegative()
+    {
+        var res = InputManager.CleanMinus(new List<string>()
+        {
+            "-2","+","-","2"
+        });
+        Assert.IsTrue(res.SequenceEqual(new List<string>(){"-2","+","-2"}));
+    }
     
     [TestMethod]
     public void SplitInputWithDavid()

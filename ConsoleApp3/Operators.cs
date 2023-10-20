@@ -7,7 +7,7 @@ public class Operators
     
     public static List<string> Actions = new List<string>()
     {
-        "b"
+        "b", "stop"
     };
 
     public static List<string> Parenthesis = new List<string>()
@@ -17,7 +17,7 @@ public class Operators
     
     public static List<string> AllOperator = new List<string>()
     {
-        "+", "-", "*", "/"
+        "+", "*", "/", "-"
     };
 
     public static bool IsOperator(string arg)

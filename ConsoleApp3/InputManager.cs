@@ -49,9 +49,39 @@ public class InputManager : IInputManagerInterface
 
         }
 
-        return res.Where(x => !String.IsNullOrEmpty(x)).ToList();
+        res = res.Where(x => !String.IsNullOrEmpty(x)).ToList();
+        return CleanMinus(res);
     }
-    
+
+    public static List<string> CleanMinus(List<string> res)
+    {
+        var newRes = new List<string>();
+        for (int i = 0; i < res.Count; i++)
+        {
+            var element = res.ElementAt(i);
+            if (int.TryParse(element, out _))
+            {
+                var prev = res.ElementAtOrDefault(i - 1);
+                var prevprev = res.ElementAtOrDefault(i - 2);
+                if (prev == "-" && !int.TryParse(prevprev, out _))
+                {
+                    newRes.RemoveAt(newRes.Count - 1);
+                    newRes.Add(prev + element);
+                }
+                else
+                {
+                    newRes.Add(element);
+                }
+            }
+            else
+            {
+                newRes.Add(element);
+            }
+        }
+
+        return newRes;
+    }
+
     public string AddInput(string inputToSplit = null)
     {
         if (inputToSplit == null)

@@ -26,6 +26,7 @@ public class InputManagerTester
         Assert.IsTrue(res.SequenceEqual(execetedResult));
     }
     
+    
     [TestMethod]
     public void SplitInputWithDavid()
     {

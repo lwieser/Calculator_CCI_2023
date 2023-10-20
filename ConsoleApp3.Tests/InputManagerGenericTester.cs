@@ -42,6 +42,13 @@ public class InputManagerGenericTester
         inputManager.AddInput("+");
         Assert.IsFalse(inputManager.Historique.Content.Any());
     }
+    
+    [TestMethod]
+    public void AddInputWithMinusOperator()
+    {
+        inputManager.AddInput("2-3");
+        Assert.AreEqual(-1, inputManager.Historique.GetResult());
+    }
 
     [TestMethod]
     public void AddInputTestCase1()

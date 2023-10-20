@@ -4,12 +4,18 @@ namespace ConsoleApp3;
 
 public class InputManager : IInputManagerInterface
 {
+    private IReader _reader;
     public History History { get; set; } = new History();
+
+    public InputManager(IReader reader)
+    {
+        _reader = reader;
+    }
     
-
-
     public List<string> SplitInput(string input)
     {
+        if (input == null) return new List<string>();
+        
         var res = new List<string>()
         {
             input
@@ -46,14 +52,15 @@ public class InputManager : IInputManagerInterface
         return res.Where(x => !String.IsNullOrEmpty(x)).ToList();
     }
     
-    public void AddInput(string inputToSplit = null)
+    public string AddInput(string inputToSplit = null)
     {
         if (inputToSplit == null)
         {
-            inputToSplit = Console.ReadLine();
+            inputToSplit = _reader.Read();
         }
 
-        foreach (var input in SplitInput(inputToSplit))
+        var inputs = SplitInput(inputToSplit);
+        foreach (var input in inputs)
         {
             if (Operators.IsBack(input))
             {
@@ -71,6 +78,9 @@ public class InputManager : IInputManagerInterface
                     History.Add(input);
                 }
             }
+
         }
+
+        return inputs.LastOrDefault();
     }
 }

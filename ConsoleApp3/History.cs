@@ -7,6 +7,8 @@ public class History : IHistorique
         .LastOrDefault(x => Operators.AllOperator.Contains(x));
 
     public bool IsLastElementValue => int.TryParse(Content.LastOrDefault(), out _);
+    public bool IsLastElementOperator => !IsLastElementValue;
+
     public void Add(string input)
     {
         Content.Add(input);

@@ -5,6 +5,7 @@ public class InputManagerV1Tester : InputManagerGenericTester
 {
     public InputManagerV1Tester()
     {
-        inputManager = new InputManager();
+        inputManager = new InputManager(new ConsoleReader());
     }
+    
 }

@@ -46,6 +46,19 @@ public class HistoriqueTester
     {
         Assert.AreEqual(0, HistoriqueFactory.Empty().GetResult());
     }
+    
+    [TestMethod]
+    public void GetResultDavid()
+    {
+        var hist = new History()
+        {
+            Content = new List<string>()
+            {
+                "2", "+", "23"
+            }
+        };
+        Assert.AreEqual(25, hist.GetResult());
+    }
 
     [TestMethod]
     public void Revert_WithTwoPlusTwo_ThenTwoPlus()

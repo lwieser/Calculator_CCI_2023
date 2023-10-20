@@ -1,13 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Text;
 using ConsoleApp3;
 
-string op;
-var inputManager = new InputManager();
-do
-{
-    inputManager.AddInput();
-    Console.WriteLine(inputManager.History.ToString());
-    Console.WriteLine("Le résultat est " + inputManager.History.GetResult());
-
-} while (true);
+var prg = new ProgramRunner(new ConsoleReader());
+prg.Run();

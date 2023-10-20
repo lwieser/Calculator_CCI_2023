@@ -20,13 +20,24 @@ public class InputManagerGenericTester
     }
 
     [TestMethod]
-    public void GetResultDavid()
+    public void AddInputWithDavid()
     {
         inputManager.AddInput("2++23");
-        var res = inputManager.History.GetResult();
-        Assert.AreEqual(25, res);
+        var expected = new List<string>()
+        {
+            "2", "+", "23"
+        };
+        Assert.IsTrue(inputManager.History.Content.SequenceEqual(expected));
     }
     
+    
+    
+    [TestMethod]
+    public void AddInput2Plus2StopThenReturnsStop()
+    {
+        var res =         inputManager.AddInput("2+2stop");
+        Assert.AreEqual("stop", res);
+    }
     
     [TestMethod]
     public void AddInputWithEmptyAndNumberThenNumberIsAdded()
@@ -57,6 +68,19 @@ public class InputManagerGenericTester
         inputManager.AddInput("+");
         inputManager.AddInput("2");
         Assert.AreEqual(4, inputManager.History.GetResult());
+    }
+
+    [TestMethod]
+    public void AddInputWithDoubleBThenNoBInContent()
+    {
+        new List<string>()
+        {
+            "2", "+", "3", "b", "4", "*","6","b","b","*","8"
+        }.ForEach(x =>
+        {
+            inputManager.AddInput(x);
+        });
+        Assert.IsTrue(inputManager.History.Content.All(x => !Operators.IsBack(x)));
     }
     
     [TestMethod]

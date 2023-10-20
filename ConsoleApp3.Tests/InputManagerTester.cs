@@ -10,7 +10,7 @@ public class InputManagerTester
 
     public InputManagerTester()
     {
-        inputManager = new InputManager();
+        inputManager = new InputManager(new ConsoleReader());
     }
 
 
@@ -25,7 +25,13 @@ public class InputManagerTester
         };
         Assert.IsTrue(res.SequenceEqual(execetedResult));
     }
-    
+
+    [TestMethod]
+    public void SplitInputWithNull()
+    {
+        var res = inputManager.SplitInput(null);
+        Assert.AreEqual(0, res.Count);
+    }
     
     [TestMethod]
     public void SplitInputWithDavid()

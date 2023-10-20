@@ -53,7 +53,7 @@ public class InputManagerV2 : IInputManagerInterface
         return input;
     }
 
-    public void AddInput(string input = null)
+    public string AddInput(string input = null)
     {
         if (input == null)
         {
@@ -63,6 +63,7 @@ public class InputManagerV2 : IInputManagerInterface
         if (input == "b")
         {
             History.Revert();
+            return "";
         }
 
         if (Operators.All().Contains(input) && input != "b" && History.Content.Any())
@@ -81,18 +82,29 @@ public class InputManagerV2 : IInputManagerInterface
                     if (elements[i] == 'b') History.Revert();
                     else
                     {
-                        // string value = "";
-                        // while (int.TryParse(elements[i].ToString(), out var intValue2))
-                        // {
-                        //     value += elements[i];
-                        //     i++;
-                        // }
-                        //
-                        // if (value != "")
-                        // {
-                        //     Historique.Add(value);
-                        // } else Historique.Add(elements[i].ToString());
-                        History.Add(elements[i].ToString());
+                        string value = "";
+                        while ( i < elements.Length && int.TryParse(elements[i].ToString(), out var intvalue2))
+                        {
+                            value += elements[i];
+                            i++;
+                        }
+                        
+                        if (value != "")
+                        {
+                            if (int.TryParse(value, out _))
+                            {
+                                i--;
+                            }
+                            History.Add(value);
+                        }
+                        else
+                        {
+                            if (Operators.AllOperator.Contains(elements[i].ToString()) && !History.IsLastElementOperator)
+                            {
+                                History.Add(elements[i].ToString());
+                            }
+                        }
+                        //History.Add(elements[i].ToString());
                         // if (i < elements.Length - 2 && int.TryParse(elements[i].ToString(), out intValue))
                         // {
                         //     var nextElementIsNumber = int.TryParse(elements[i + 1].ToString(), out intValue);
@@ -117,5 +129,7 @@ public class InputManagerV2 : IInputManagerInterface
         {
             History.Add(input);
         }
+
+        return "";
     }
 }

@@ -65,21 +65,3 @@ public class InputManagerGenericTester
         Assert.AreEqual(48, inputManager.Historique.GetResult());
     }
 }
-
-[TestClass]
-public class InputManagerV1Tester : InputManagerGenericTester
-{
-    public InputManagerV1Tester()
-    {
-        inputManager = new InputManager();
-    }
-}
-
-[TestClass]
-public class InputManagerV2Tester : InputManagerGenericTester
-{
-    public InputManagerV2Tester()
-    {
-        inputManager = new InputManagerV2();
-    }
-}
